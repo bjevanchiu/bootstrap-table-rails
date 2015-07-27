@@ -1,6 +1,6 @@
 # bootstrap-table-rails [![Gem Version](https://badge.fury.io/rb/bootstrap-table-rails.png)](http://badge.fury.io/rb/bootstrap-table-rails)
 
-bootstrap-table-rails provides the [bootstrap-table](http://www.bootstrap-table.org/)
+bootstrap-table-rails provides the [bootstrap-table](https://github.com/wenzhixin/bootstrap-table/)
 plugin as a Rails engine to use it within the asset pipeline.
 
 ## Installation
