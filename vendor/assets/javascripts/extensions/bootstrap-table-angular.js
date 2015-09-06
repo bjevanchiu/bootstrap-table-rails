@@ -1,7 +1,105 @@
-/*
-* bootstrap-table - v1.8.1 - 2015-07-05
-* https://github.com/wenzhixin/bootstrap-table
-* Copyright (c) 2015 zhixin wen
-* Licensed MIT License
-*/
-!function(){angular.module("bsTable",[]).directive("bsTableControl",function(){function a(a){var b;return $.each(f,function(d,e){return e.$el.closest(c).has(a).length?(b=e,!0):void 0}),b}function b(){var a=this,b=a.$s.bsTableControl.state;a.$s.$applyAsync(function(){b.scroll=a.$el.bootstrapTable("getScrollPosition")})}var c=".bootstrap-table",d=".fixed-table-body",e=".search input",f={};return $(window).resize(function(){$.each(f,function(a,b){b.$el.bootstrapTable("resetView")})}),$(document).on("post-header.bs.table",c+" table",function(e){var f=a(e.target);f&&f.$el.closest(c).find(d).on("scroll",b.bind(f))}).on("sort.bs.table",c+" table",function(b,c,d){var e=a(b.target);if(e){var f=e.$s.bsTableControl.state;e.$s.$applyAsync(function(){f.sortName=c,f.sortOrder=d})}}).on("page-change.bs.table",c+" table",function(b,c,d){var e=a(b.target);if(e){var f=e.$s.bsTableControl.state;e.$s.$applyAsync(function(){f.pageNumber=c,f.pageSize=d})}}).on("search.bs.table",c+" table",function(b,c){var d=a(b.target);if(d){var e=d.$s.bsTableControl.state;d.$s.$applyAsync(function(){e.searchText=c})}}).on("focus blur",c+" "+e,function(b){var c=a(b.target);if(c){var d=c.$s.bsTableControl.state;c.$s.$applyAsync(function(){d.searchHasFocus=$(b.target).is(":focus")})}}),{restrict:"EA",scope:{bsTableControl:"="},link:function(a,b){f[a.$id]={$s:a,$el:b};a.instantiated=!1,a.$watch("bsTableControl.options",function(d){d||(d=a.bsTableControl.options={});var f=a.bsTableControl.state||{};a.instantiated&&b.bootstrapTable("destroy"),b.bootstrapTable(angular.extend(angular.copy(d),f)),a.instantiated=!0,"scroll"in f&&b.bootstrapTable("scrollTo",f.scroll),"searchHasFocus"in f&&b.closest(c).find(e).focus()},!0),a.$watch("bsTableControl.state",function(c){c||(c=a.bsTableControl.state={}),b.trigger("directive-updated.bs.table",[c])},!0),a.$on("$destroy",function(){delete f[a.$id]})}}})}();
+// JavaScript source code
+(function () {
+  if (typeof angular === 'undefined') {
+    return;
+  }
+  angular.module('bsTable', []).directive('bsTableControl', function () {
+    var CONTAINER_SELECTOR = '.bootstrap-table';
+    var SCROLLABLE_SELECTOR = '.fixed-table-body';
+    var SEARCH_SELECTOR = '.search input';
+    var bsTables = {};
+    function getBsTable (el) {
+      var result;
+      $.each(bsTables, function (id, bsTable) {
+        if (!bsTable.$el.closest(CONTAINER_SELECTOR).has(el).length) return;
+        result = bsTable;
+        return true;
+      });
+      return result;
+    }
+
+    $(window).resize(function () {
+      $.each(bsTables, function (id, bsTable) {
+        bsTable.$el.bootstrapTable('resetView');
+      });
+    });
+    function onScroll () {
+      var bsTable = this;
+      var state = bsTable.$s.bsTableControl.state;
+      bsTable.$s.$applyAsync(function () {
+        state.scroll = bsTable.$el.bootstrapTable('getScrollPosition');
+      });
+    }
+    $(document)
+      .on('post-header.bs.table', CONTAINER_SELECTOR+' table', function (evt) { // bootstrap-table calls .off('scroll') in initHeader so reattach here
+        var bsTable = getBsTable(evt.target);
+        if (!bsTable) return;
+        bsTable.$el
+          .closest(CONTAINER_SELECTOR)
+          .find(SCROLLABLE_SELECTOR)
+          .on('scroll', onScroll.bind(bsTable));
+      })
+      .on('sort.bs.table', CONTAINER_SELECTOR+' table', function (evt, sortName, sortOrder) {
+        var bsTable = getBsTable(evt.target);
+        if (!bsTable) return;
+        var state = bsTable.$s.bsTableControl.state;
+        bsTable.$s.$applyAsync(function () {
+          state.sortName = sortName;
+          state.sortOrder = sortOrder;
+        });
+      })
+      .on('page-change.bs.table', CONTAINER_SELECTOR+' table', function (evt, pageNumber, pageSize) {
+        var bsTable = getBsTable(evt.target);
+        if (!bsTable) return;
+        var state = bsTable.$s.bsTableControl.state;
+        bsTable.$s.$applyAsync(function () {
+          state.pageNumber = pageNumber;
+          state.pageSize = pageSize;
+        });
+      })
+      .on('search.bs.table', CONTAINER_SELECTOR+' table', function (evt, searchText) {
+        var bsTable = getBsTable(evt.target);
+        if (!bsTable) return;
+        var state = bsTable.$s.bsTableControl.state;
+        bsTable.$s.$applyAsync(function () {
+          state.searchText = searchText;
+        });
+      })
+      .on('focus blur', CONTAINER_SELECTOR+' '+SEARCH_SELECTOR, function (evt) {
+        var bsTable = getBsTable(evt.target);
+        if (!bsTable) return;
+        var state = bsTable.$s.bsTableControl.state;
+        bsTable.$s.$applyAsync(function () {
+          state.searchHasFocus = $(evt.target).is(':focus');
+        });
+      });
+
+    return {
+      restrict: 'EA',
+      scope: {bsTableControl: '='},
+      link: function ($s, $el) {
+        var bsTable = bsTables[$s.$id] = {$s: $s, $el: $el};
+        $s.instantiated = false;
+        $s.$watch('bsTableControl.options', function (options) {
+          if (!options) options = $s.bsTableControl.options = {};
+          var state = $s.bsTableControl.state || {};
+
+          if ($s.instantiated) $el.bootstrapTable('destroy');
+          $el.bootstrapTable(angular.extend(angular.copy(options), state));
+          $s.instantiated = true;
+
+          // Update the UI for state that isn't settable via options
+          if ('scroll' in state) $el.bootstrapTable('scrollTo', state.scroll);
+          if ('searchHasFocus' in state) $el.closest(CONTAINER_SELECTOR).find(SEARCH_SELECTOR).focus(); // $el gets detached so have to recompute whole chain
+        }, true);
+        $s.$watch('bsTableControl.state', function (state) {
+          if (!state) state = $s.bsTableControl.state = {};
+          $el.trigger('directive-updated.bs.table', [state]);
+        }, true);
+        $s.$on('$destroy', function () {
+          delete bsTables[$s.$id];
+        });
+      }
+    };
+  })
+})();

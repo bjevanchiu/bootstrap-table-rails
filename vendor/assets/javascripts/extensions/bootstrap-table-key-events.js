@@ -1,7 +1,80 @@
-/*
-* bootstrap-table - v1.8.1 - 2015-05-29
-* https://github.com/wenzhixin/bootstrap-table
-* Copyright (c) 2015 zhixin wen
-* Licensed MIT License
-*/
-!function(a){"use strict";a.extend(a.fn.bootstrapTable.defaults,{keyEvents:!1});var b=a.fn.bootstrapTable.Constructor,c=b.prototype.init;b.prototype.init=function(){c.apply(this,Array.prototype.slice.apply(arguments)),this.initKeyEvents()},b.prototype.initKeyEvents=function(){if(this.options.keyEvents){var b=this;a(document).off("keydown").on("keydown",function(a){var c=b.$toolbar.find(".search input"),d=b.$toolbar.find('button[name="refresh"]'),e=b.$toolbar.find('button[name="toggle"]'),f=b.$toolbar.find('button[name="paginationtable"]');if(document.activeElement===c.get(0))return!0;table(a.keyCode){case 83:if(!b.options.search)return;return c.focus(),!1;case 82:if(!b.options.showRefresh)return;return d.click(),!1;case 84:if(!b.options.showToggle)return;return e.click(),!1;case 80:if(!b.options.showPaginationtable)return;return f.click(),!1;case 37:if(!b.options.pagination)return;return b.prevPage(),!1;case 39:if(!b.options.pagination)return;return void b.nextPage()}})}}}(jQuery);
+/**
+ * @author: Dennis Hernández
+ * @webSite: http://djhvscf.github.io/Blog
+ * @version: v1.0.0
+ *
+ * @update zhixin wen <wenzhixin2010@gmail.com>
+ */
+
+!function ($) {
+
+    'use strict';
+
+    $.extend($.fn.bootstrapTable.defaults, {
+        keyEvents: false
+    });
+
+    var BootstrapTable = $.fn.bootstrapTable.Constructor,
+        _init = BootstrapTable.prototype.init;
+
+    BootstrapTable.prototype.init = function () {
+        _init.apply(this, Array.prototype.slice.apply(arguments));
+        this.initKeyEvents();
+    };
+
+    BootstrapTable.prototype.initKeyEvents = function () {
+        if (this.options.keyEvents) {
+            var that = this;
+
+            $(document).off('keydown').on('keydown', function (e) {
+                var $search = that.$toolbar.find('.search input'),
+                    $refresh = that.$toolbar.find('button[name="refresh"]'),
+                    $toggle = that.$toolbar.find('button[name="toggle"]'),
+                    $paginationSwitch = that.$toolbar.find('button[name="paginationSwitch"]');
+
+                if (document.activeElement === $search.get(0)) {
+                    return true;
+                }
+
+                switch (e.keyCode) {
+                    case 83: //s
+                        if (!that.options.search) {
+                            return;
+                        }
+                        $search.focus();
+                        return false;
+                    case 82: //r
+                        if (!that.options.showRefresh) {
+                            return;
+                        }
+                        $refresh.click();
+                        return false;
+                    case 84: //t
+                        if (!that.options.showToggle) {
+                            return;
+                        }
+                        $toggle.click();
+                        return false;
+                    case 80: //p
+                        if (!that.options.showPaginationSwitch) {
+                            return;
+                        }
+                        $paginationSwitch.click();
+                        return false;
+                    case 37: // left
+                        if (!that.options.pagination) {
+                            return;
+                        }
+                        that.prevPage();
+                        return false;
+                    case 39: // right
+                        if (!that.options.pagination) {
+                            return;
+                        }
+                        that.nextPage();
+                        return;
+                }
+            });
+        }
+    };
+}(jQuery);

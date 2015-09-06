@@ -1,7 +1,103 @@
-/*
-* bootstrap-table - v1.8.1 - 2015-05-29
-* https://github.com/wenzhixin/bootstrap-table
-* Copyright (c) 2015 zhixin wen
-* Licensed MIT License
-*/
-!function(a){"use strict";var b={json:"JSON",xml:"XML",png:"PNG",csv:"CSV",txt:"TXT",sql:"SQL",doc:"MS-Word",excel:"Ms-Excel",powerpoint:"Ms-Powerpoint",pdf:"PDF"};a.extend(a.fn.bootstrapTable.defaults,{showExport:!1,exportTypes:["json","xml","csv","txt","sql","excel"],exportOptions:{}});var c=a.fn.bootstrapTable.Constructor,d=c.prototype.initToolbar;c.prototype.initToolbar=function(){if(this.showToolbar=this.options.showExport,d.apply(this,Array.prototype.slice.apply(arguments)),this.options.showExport){var c=this,e=this.$toolbar.find(">.btn-group"),f=e.find("div.export");if(!f.length){f=a(['<div class="export btn-group">','<button class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button">','<i class="glyphicon glyphicon-export icon-share"></i> ','<span class="caret"></span>',"</button>",'<ul class="dropdown-menu" role="menu">',"</ul>","</div>"].join("")).appendTo(e);var g=f.find(".dropdown-menu"),h=this.options.exportTypes;if("string"==typeof this.options.exportTypes){var i=this.options.exportTypes.slice(1,-1).replace(/ /g,"").split(",");h=[],a.each(i,function(a,b){h.push(b.slice(1,-1))})}a.each(h,function(a,c){b.hasOwnProperty(c)&&g.append(['<li data-type="'+c+'">','<a href="javascript:void(0)">',b[c],"</a>","</li>"].join(""))}),g.find("li").click(function(){c.$el.tableExport(a.extend({},c.options.exportOptions,{type:a(this).data("type"),escape:!1}))})}}}}(jQuery);
+/**
+ * @author zhixin wen <wenzhixin2010@gmail.com>
+ * extensions: https://github.com/kayalshri/tableExport.jquery.plugin
+ */
+
+(function ($) {
+    'use strict';
+
+    var TYPE_NAME = {
+        json: 'JSON',
+        xml: 'XML',
+        png: 'PNG',
+        csv: 'CSV',
+        txt: 'TXT',
+        sql: 'SQL',
+        doc: 'MS-Word',
+        excel: 'Ms-Excel',
+        powerpoint: 'Ms-Powerpoint',
+        pdf: 'PDF'
+    };
+
+    $.extend($.fn.bootstrapTable.defaults, {
+        showExport: false,
+        exportDataType: 'basic', // basic, all, selected
+        // 'json', 'xml', 'png', 'csv', 'txt', 'sql', 'doc', 'excel', 'powerpoint', 'pdf'
+        exportTypes: ['json', 'xml', 'csv', 'txt', 'sql', 'excel'],
+        exportOptions: {}
+    });
+
+    var BootstrapTable = $.fn.bootstrapTable.Constructor,
+        _initToolbar = BootstrapTable.prototype.initToolbar;
+
+    BootstrapTable.prototype.initToolbar = function () {
+        this.showToolbar = this.options.showExport;
+
+        _initToolbar.apply(this, Array.prototype.slice.apply(arguments));
+
+        if (this.options.showExport) {
+            var that = this,
+                $btnGroup = this.$toolbar.find('>.btn-group'),
+                $export = $btnGroup.find('div.export');
+
+            if (!$export.length) {
+                $export = $([
+                    '<div class="export btn-group">',
+                        '<button class="btn btn-default dropdown-toggle" ' +
+                            'data-toggle="dropdown" type="button">',
+                            '<i class="glyphicon glyphicon-export icon-share"></i> ',
+                            '<span class="caret"></span>',
+                        '</button>',
+                        '<ul class="dropdown-menu" role="menu">',
+                        '</ul>',
+                    '</div>'].join('')).appendTo($btnGroup);
+
+                var $menu = $export.find('.dropdown-menu'),
+                    exportTypes = this.options.exportTypes;
+
+                if (typeof this.options.exportTypes === 'string') {
+                    var types = this.options.exportTypes.slice(1, -1).replace(/ /g, '').split(',');
+
+                    exportTypes = [];
+                    $.each(types, function (i, value) {
+                        exportTypes.push(value.slice(1, -1));
+                    });
+                }
+                $.each(exportTypes, function (i, type) {
+                    if (TYPE_NAME.hasOwnProperty(type)) {
+                        $menu.append(['<li data-type="' + type + '">',
+                                '<a href="javascript:void(0)">',
+                                    TYPE_NAME[type],
+                                '</a>',
+                            '</li>'].join(''));
+                    }
+                });
+
+                $menu.find('li').click(function () {
+                    var type = $(this).data('type'),
+                        doExport = function () {
+                            that.$el.tableExport($.extend({}, that.options.exportOptions, {
+                                type: type,
+                                escape: false
+                            }));
+                        };
+
+                    if (that.options.exportDataType === 'all' && that.options.pagination) {
+                        that.togglePagination();
+                        doExport();
+                        that.togglePagination();
+                    } else if (that.options.exportDataType === 'selected') {
+                        var data = that.getData(),
+                            selectedData = that.getAllSelections();
+
+                        that.load(selectedData);
+                        doExport();
+                        that.load(data);
+                    } else {
+                        doExport();
+                    }
+                });
+            }
+        }
+    };
+})(jQuery);

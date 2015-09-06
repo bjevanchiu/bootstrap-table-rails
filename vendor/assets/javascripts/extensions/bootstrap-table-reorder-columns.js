@@ -1,7 +1,130 @@
-/*
-* bootstrap-table - v1.8.1 - 2015-05-29
-* https://github.com/wenzhixin/bootstrap-table
-* Copyright (c) 2015 zhixin wen
-* Licensed MIT License
-*/
-!function(a){"use strict";var b=function(b,c){var d=-1;return a.each(b,function(a,b){return b.field===c?(d=a,!1):!0}),d};a.extend(a.fn.bootstrapTable.defaults,{reorderableColumns:!1,maxMovingRows:10,onReorderColumn:function(){return!1}}),a.extend(a.fn.bootstrapTable.Constructor.EVENTS,{"reorder-column.bs.table":"onReorderColumn"});var c=a.fn.bootstrapTable.Constructor,d=c.prototype.initHeader,e=c.prototype.toggleColumn,f=c.prototype.toggleView,g=c.prototype.resetView;c.prototype.initHeader=function(){d.apply(this,Array.prototype.slice.apply(arguments)),this.options.reorderableColumns&&this.makeRowsReorderable()},c.prototype.toggleColumn=function(){e.apply(this,Array.prototype.slice.apply(arguments)),this.options.reorderableColumns&&this.makeRowsReorderable()},c.prototype.toggleView=function(){f.apply(this,Array.prototype.slice.apply(arguments)),this.options.reorderableColumns&&(this.options.cardView||this.makeRowsReorderable())},c.prototype.resetView=function(){g.apply(this,Array.prototype.slice.apply(arguments)),this.options.reorderableColumns&&this.makeRowsReorderable()},c.prototype.makeRowsReorderable=function(){var c=this;try{a(this.$el).dragtable("destroy")}catch(d){}a(this.$el).dragtable({maxMovingRows:c.options.maxMovingRows,clickDelay:200,beforeStop:function(){var d=[],e=[],f=-1;c.$header.find("th").each(function(){d.push(a(this).data("field"))});for(var g=0;g<d.length;g++)f=b(c.options.columns,d[g]),-1!==f&&(e.push(c.options.columns[f]),c.options.columns.splice(f,1));c.options.columns=c.options.columns.concat(e),c.header.fields=d,c.resetView(),c.trigger("reorder-column",d)}})}}(jQuery);
+/**
+ * @author: Dennis Hernández
+ * @webSite: http://djhvscf.github.io/Blog
+ * @version: v1.1.0
+ */
+
+!function ($) {
+
+    'use strict';
+
+    var getFieldIndex = function (columns, field) {
+        var index = -1;
+
+        $.each(columns, function (i, column) {
+            if (column.field === field) {
+                index = i;
+                return false;
+            }
+            return true;
+        });
+        return index;
+    };
+
+    $.extend($.fn.bootstrapTable.defaults, {
+        reorderableColumns: false,
+        maxMovingRows: 10,
+        onReorderColumn: function (headerFields) {
+            return false;
+        },
+        dragaccept: null
+    });
+
+    $.extend($.fn.bootstrapTable.Constructor.EVENTS, {
+        'reorder-column.bs.table': 'onReorderColumn'
+    });
+
+    var BootstrapTable = $.fn.bootstrapTable.Constructor,
+        _initHeader = BootstrapTable.prototype.initHeader,
+        _toggleColumn = BootstrapTable.prototype.toggleColumn,
+        _toggleView = BootstrapTable.prototype.toggleView,
+        _resetView = BootstrapTable.prototype.resetView;
+
+    BootstrapTable.prototype.initHeader = function () {
+        _initHeader.apply(this, Array.prototype.slice.apply(arguments));
+
+        if (!this.options.reorderableColumns) {
+            return;
+        }
+
+        this.makeRowsReorderable();
+    };
+
+    BootstrapTable.prototype.toggleColumn = function () {
+        _toggleColumn.apply(this, Array.prototype.slice.apply(arguments));
+
+        if (!this.options.reorderableColumns) {
+            return;
+        }
+
+        this.makeRowsReorderable();
+    };
+
+    BootstrapTable.prototype.toggleView = function () {
+        _toggleView.apply(this, Array.prototype.slice.apply(arguments));
+
+        if (!this.options.reorderableColumns) {
+            return;
+        }
+
+        if (this.options.cardView) {
+            return;
+        }
+
+        this.makeRowsReorderable();
+    };
+
+    BootstrapTable.prototype.resetView = function () {
+        _resetView.apply(this, Array.prototype.slice.apply(arguments));
+
+        if (!this.options.reorderableColumns) {
+            return;
+        }
+
+        this.makeRowsReorderable();
+    };
+
+    BootstrapTable.prototype.makeRowsReorderable = function () {
+        var that = this;
+        try {
+            $(this.$el).dragtable('destroy');
+        } catch (e) {}
+        $(this.$el).dragtable({
+            maxMovingRows: that.options.maxMovingRows,
+            dragaccept: that.options.dragaccept,
+            clickDelay:200,
+            beforeStop: function() {
+                var ths = [],
+                    columns = [],
+                    columnsHidden = [],
+                    columnIndex = -1;
+                that.$header.find('th').each(function (i) {
+                    ths.push($(this).data('field'));
+                });
+
+                //Exist columns not shown
+                if (ths.length < that.columns.length) {
+                    columnsHidden = $.grep(that.columns, function (column) {
+                       return !column.visible;
+                    });
+                    for (var i = 0; i < columnsHidden.length; i++) {
+                        ths.push(columnsHidden[i].field);
+                    }
+                }
+
+                for (var i = 0; i < ths.length; i++ ) {
+                    columnIndex = getFieldIndex(that.columns, ths[i]);
+                    if (columnIndex !== -1) {
+                        columns.push(that.columns[columnIndex]);
+                        that.columns.splice(columnIndex, 1);
+                    }
+                }
+
+                that.columns = that.columns.concat(columns);
+                that.header.fields = ths;
+                that.resetView();
+                that.trigger('reorder-column', ths);
+            }
+        });
+    };
+}(jQuery);

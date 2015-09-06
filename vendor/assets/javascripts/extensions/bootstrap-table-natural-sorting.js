@@ -1,7 +1,47 @@
-/*
-* bootstrap-table - v1.8.1 - 2015-05-29
-* https://github.com/wenzhixin/bootstrap-table
-* Copyright (c) 2015 zhixin wen
-* Licensed MIT License
-*/
-function alphanum(a,b){function c(a){for(var b,c,d=[],e=0,f=-1,g=0;b=(c=a.charAt(e++)).charCodeAt(0);){var h=46===b||b>=48&&57>=b;h!==g&&(d[++f]="",g=h),d[f]+=c}return d}var d=c(a),e=c(b);for(x=0;d[x]&&e[x];x++)if(d[x]!==e[x]){var f=Number(d[x]),g=Number(e[x]);return f==d[x]&&g==e[x]?f-g:d[x]>e[x]?1:-1}return d.length-e.length}
+/**
+ * @author: Brian Huisman
+ * @webSite: http://www.greywyvern.com
+ * @version: v1.0.0
+ * JS function to allow natural sorting on bootstrap-table columns
+ * just add data-sorter="alphanum" to any th
+ *
+ * @update Dennis Hernández <http://djhvscf.github.io/Blog>
+ */
+
+function alphanum(a, b) {
+  function chunkify(t) {
+    var tz = [],
+        x = 0,
+        y = -1,
+        n = 0,
+        i,
+        j;
+
+    while (i = (j = t.charAt(x++)).charCodeAt(0)) {
+      var m = (i === 46 || (i >= 48 && i <= 57));
+      if (m !== n) {
+        tz[++y] = "";
+        n = m;
+      }
+      tz[y] += j;
+    }
+    return tz;
+  }
+
+  var aa = chunkify(a);
+  var bb = chunkify(b);
+
+  for (x = 0; aa[x] && bb[x]; x++) {
+    if (aa[x] !== bb[x]) {
+      var c = Number(aa[x]),
+          d = Number(bb[x]);
+
+      if (c == aa[x] && d == bb[x]) {
+        return c - d;
+      } else {
+          return (aa[x] > bb[x]) ? 1 : -1;
+      }
+    }
+  }
+  return aa.length - bb.length;
+}

@@ -1,7 +1,107 @@
-/*
-* bootstrap-table - v1.8.1 - 2015-05-29
-* https://github.com/wenzhixin/bootstrap-table
-* Copyright (c) 2015 zhixin wen
-* Licensed MIT License
-*/
-!function(a){"use strict";a.extend(a.fn.bootstrapTable.defaults,{editable:!0,onEditableInit:function(){return!1},onEditableSave:function(){return!1}}),a.extend(a.fn.bootstrapTable.Constructor.EVENTS,{"editable-init.bs.table":"onEditableInit","editable-save.bs.table":"onEditableSave"});var b=a.fn.bootstrapTable.Constructor,c=b.prototype.initTable,d=b.prototype.initBody;b.prototype.initTable=function(){var b=this;c.apply(this,Array.prototype.slice.apply(arguments)),this.options.editable&&a.each(this.options.columns,function(a,c){if(c.editable){var d=c.formatter;c.formatter=function(a,e,f){var g=d?d(a,e,f):a;return['<a href="javascript:void(0)"',' data-name="'+c.field+'"',' data-pk="'+e[b.options.idField]+'"',' data-value="'+g+'"',"></a>"].join("")}}})},b.prototype.initBody=function(){var b=this;d.apply(this,Array.prototype.slice.apply(arguments)),this.options.editable&&(a.each(this.options.columns,function(c,d){d.editable&&b.$body.find('a[data-name="'+d.field+'"]').editable(d.editable).off("save").on("save",function(c,e){var f=b.getData(),g=a(this).parents("tr[data-index]").data("index"),h=f[g],i=h[d.field];h[d.field]=e.submitValue,b.trigger("editable-save",d.field,h,i,a(this))})}),this.trigger("editable-init"))}}(jQuery);
+/**
+ * @author zhixin wen <wenzhixin2010@gmail.com>
+ * extensions: https://github.com/vitalets/x-editable
+ */
+
+!function ($) {
+
+    'use strict';
+
+    $.extend($.fn.bootstrapTable.defaults, {
+        editable: true,
+        onEditableInit: function () {
+            return false;
+        },
+        onEditableSave: function (field, row, oldValue, $el) {
+            return false;
+        },
+        onEditableShown: function (field, row, $el, editable) {
+            return false;
+        },
+        onEditableHidden: function (field, row, $el) {
+            return false;
+        }
+    });
+
+    $.extend($.fn.bootstrapTable.Constructor.EVENTS, {
+        'editable-init.bs.table': 'onEditableInit',
+        'editable-save.bs.table': 'onEditableSave',
+        'editable-shown.bs.table': 'onEditableShown',
+        'editable-hidden.bs.table': 'onEditableHidden'
+    });
+
+    var BootstrapTable = $.fn.bootstrapTable.Constructor,
+        _initTable = BootstrapTable.prototype.initTable,
+        _initBody = BootstrapTable.prototype.initBody;
+
+    BootstrapTable.prototype.initTable = function () {
+        var that = this;
+        _initTable.apply(this, Array.prototype.slice.apply(arguments));
+
+        if (!this.options.editable) {
+            return;
+        }
+
+        $.each(this.columns, function (i, column) {
+            if (!column.editable) {
+                return;
+            }
+
+            var _formatter = column.formatter;
+            column.formatter = function (value, row, index) {
+                var result = _formatter ? _formatter(value, row, index) : value;
+
+                return ['<a href="javascript:void(0)"',
+                    ' data-name="' + column.field + '"',
+                    ' data-pk="' + row[that.options.idField] + '"',
+                    ' data-value="' + result + '"',
+                    '>' + '</a>'
+                ].join('');
+            };
+        });
+    };
+
+    BootstrapTable.prototype.initBody = function () {
+        var that = this;
+        _initBody.apply(this, Array.prototype.slice.apply(arguments));
+
+        if (!this.options.editable) {
+            return;
+        }
+
+        $.each(this.columns, function (i, column) {
+            if (!column.editable) {
+                return;
+            }
+
+            that.$body.find('a[data-name="' + column.field + '"]').editable(column.editable)
+                .off('save').on('save', function (e, params) {
+                    var data = that.getData(),
+                        index = $(this).parents('tr[data-index]').data('index'),
+                        row = data[index],
+                        oldValue = row[column.field];
+
+                    row[column.field] = params.submitValue;
+                    that.trigger('editable-save', column.field, row, oldValue, $(this));
+                });
+            that.$body.find('a[data-name="' + column.field + '"]').editable(column.editable)
+                .off('shown').on('shown', function (e) {
+                    var data = that.getData(),
+                        index = $(this).parents('tr[data-index]').data('index'),
+                        row = data[index];
+                    
+                    that.trigger('editable-shown', column.field, row, $(this));
+                });
+            that.$body.find('a[data-name="' + column.field + '"]').editable(column.editable)
+                .off('hidden').on('hidden', function (e, editable) {
+                    var data = that.getData(),
+                        index = $(this).parents('tr[data-index]').data('index'),
+                        row = data[index];
+                    
+                    that.trigger('editable-hidden', column.field, row, $(this), editable);
+                });
+        });
+        this.trigger('editable-init');
+    };
+
+}(jQuery);
