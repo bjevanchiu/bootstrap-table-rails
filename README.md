@@ -35,10 +35,10 @@ Dir tree:
 vendor/
 └── assets
     ├── javascripts
-    │   ├── bootstrap-table-all.js
     │   ├── bootstrap-table-locale-all.js
     │   ├── bootstrap-table.js
     │   ├── extensions
+    │   │   ├── bootstrap-table-accent-neutralise.js
     │   │   ├── bootstrap-table-angular.js
     │   │   ├── bootstrap-table-cookie.js
     │   │   ├── bootstrap-table-editable.js
@@ -49,6 +49,7 @@ vendor/
     │   │   ├── bootstrap-table-group-by.js
     │   │   ├── bootstrap-table-key-events.js
     │   │   ├── bootstrap-table-mobile.js
+    │   │   ├── bootstrap-table-multiple-search.js
     │   │   ├── bootstrap-table-multiple-sort.js
     │   │   ├── bootstrap-table-natural-sorting.js
     │   │   ├── bootstrap-table-reorder-columns.js
@@ -56,6 +57,7 @@ vendor/
     │   │   ├── bootstrap-table-resizable.js
     │   │   └── bootstrap-table-toolbar.js
     │   └── locale
+    │       ├── bootstrap-table-af-ZA.js
     │       ├── bootstrap-table-ar-SA.js
     │       ├── bootstrap-table-ca-ES.js
     │       ├── bootstrap-table-cs-CZ.js
@@ -69,6 +71,7 @@ vendor/
     │       ├── bootstrap-table-es-MX.js
     │       ├── bootstrap-table-es-NI.js
     │       ├── bootstrap-table-es-SP.js
+    │       ├── bootstrap-table-et-EE.js
     │       ├── bootstrap-table-fa-IR.js
     │       ├── bootstrap-table-fr-BE.js
     │       ├── bootstrap-table-fr-FR.js

@@ -1,7 +1,7 @@
 module Bootstrap
   module Table
     module Rails
-      VERSION = "1.8.2.1"
+      VERSION = "1.9.0"
     end
   end
 end
