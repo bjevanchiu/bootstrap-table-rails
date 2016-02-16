@@ -46,6 +46,7 @@ vendor/
     │   │   ├── bootstrap-table-filter-control.js
     │   │   ├── bootstrap-table-filter.js
     │   │   ├── bootstrap-table-flat-json.js
+    │   │   ├── bootstrap-table-group-by\ 2.js
     │   │   ├── bootstrap-table-group-by.js
     │   │   ├── bootstrap-table-key-events.js
     │   │   ├── bootstrap-table-mobile.js
@@ -55,6 +56,7 @@ vendor/
     │   │   ├── bootstrap-table-reorder-columns.js
     │   │   ├── bootstrap-table-reorder-rows.js
     │   │   ├── bootstrap-table-resizable.js
+    │   │   ├── bootstrap-table-sticky-header.js
     │   │   └── bootstrap-table-toolbar.js
     │   └── locale
     │       ├── bootstrap-table-af-ZA.js
@@ -101,8 +103,10 @@ vendor/
     └── stylesheets
         ├── bootstrap-table.css
         └── extensions
+            ├── bootstrap-table-group-by\ 2.css
             ├── bootstrap-table-group-by.css
-            └── bootstrap-table-reorder-rows.css
+            ├── bootstrap-table-reorder-rows.css
+            └── bootstrap-table-sticky-header.css
 ```
 
 
