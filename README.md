@@ -77,6 +77,7 @@ vendor/
     │       ├── bootstrap-table-fa-IR.js
     │       ├── bootstrap-table-fr-BE.js
     │       ├── bootstrap-table-fr-FR.js
+    │       ├── bootstrap-table-he-IL.js
     │       ├── bootstrap-table-hr-HR.js
     │       ├── bootstrap-table-hu-HU.js
     │       ├── bootstrap-table-it-IT.js
