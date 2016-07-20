@@ -32,7 +32,7 @@ In your `application.css`, include the following:
 Dir tree:
 
 ``` tree
-vendor/
+vendor
 └── assets
     ├── javascripts
     │   ├── bootstrap-table-locale-all.js
@@ -41,6 +41,7 @@ vendor/
     │   │   ├── bootstrap-table-accent-neutralise.js
     │   │   ├── bootstrap-table-angular.js
     │   │   ├── bootstrap-table-cookie.js
+    │   │   ├── bootstrap-table-copy-rows.js
     │   │   ├── bootstrap-table-editable.js
     │   │   ├── bootstrap-table-export.js
     │   │   ├── bootstrap-table-filter-control.js
@@ -48,14 +49,17 @@ vendor/
     │   │   ├── bootstrap-table-flat-json.js
     │   │   ├── bootstrap-table-group-by\ 2.js
     │   │   ├── bootstrap-table-group-by.js
+    │   │   ├── bootstrap-table-i18n-enhance.js
     │   │   ├── bootstrap-table-key-events.js
     │   │   ├── bootstrap-table-mobile.js
+    │   │   ├── bootstrap-table-multi-toggle.js
     │   │   ├── bootstrap-table-multiple-search.js
     │   │   ├── bootstrap-table-multiple-sort.js
     │   │   ├── bootstrap-table-natural-sorting.js
     │   │   ├── bootstrap-table-reorder-columns.js
     │   │   ├── bootstrap-table-reorder-rows.js
     │   │   ├── bootstrap-table-resizable.js
+    │   │   ├── bootstrap-table-select2-filter.js
     │   │   ├── bootstrap-table-sticky-header.js
     │   │   └── bootstrap-table-toolbar.js
     │   └── locale
