@@ -32,14 +32,18 @@ In your `application.css`, include the following:
 Dir tree:
 
 ``` tree
-vendor
+vendor/
 └── assets
+    ├── images
+    │   └── icon.png
     ├── javascripts
     │   ├── bootstrap-table-locale-all.js
     │   ├── bootstrap-table.js
     │   ├── extensions
     │   │   ├── bootstrap-table-accent-neutralise.js
     │   │   ├── bootstrap-table-angular.js
+    │   │   ├── bootstrap-table-auto-refresh.js
+    │   │   ├── bootstrap-table-click-edit-row.js
     │   │   ├── bootstrap-table-cookie.js
     │   │   ├── bootstrap-table-copy-rows.js
     │   │   ├── bootstrap-table-editable.js
@@ -47,22 +51,26 @@ vendor
     │   │   ├── bootstrap-table-filter-control.js
     │   │   ├── bootstrap-table-filter.js
     │   │   ├── bootstrap-table-flat-json.js
-    │   │   ├── bootstrap-table-group-by\ 2.js
+    │   │   ├── bootstrap-table-group-by-v2.js
     │   │   ├── bootstrap-table-group-by.js
     │   │   ├── bootstrap-table-i18n-enhance.js
     │   │   ├── bootstrap-table-key-events.js
     │   │   ├── bootstrap-table-mobile.js
     │   │   ├── bootstrap-table-multi-toggle.js
     │   │   ├── bootstrap-table-multiple-search.js
+    │   │   ├── bootstrap-table-multiple-selection-row.js
     │   │   ├── bootstrap-table-multiple-sort.js
     │   │   ├── bootstrap-table-natural-sorting.js
+    │   │   ├── bootstrap-table-print.js
     │   │   ├── bootstrap-table-reorder-columns.js
     │   │   ├── bootstrap-table-reorder-rows.js
     │   │   ├── bootstrap-table-resizable.js
     │   │   ├── bootstrap-table-select2-filter.js
     │   │   ├── bootstrap-table-sticky-header.js
-    │   │   └── bootstrap-table-toolbar.js
+    │   │   ├── bootstrap-table-toolbar.js
+    │   │   └── bootstrap-table-tree-column.js
     │   └── locale
+    │       ├── README.md
     │       ├── bootstrap-table-af-ZA.js
     │       ├── bootstrap-table-ar-SA.js
     │       ├── bootstrap-table-ca-ES.js
@@ -71,7 +79,9 @@ vendor
     │       ├── bootstrap-table-de-DE.js
     │       ├── bootstrap-table-el-GR.js
     │       ├── bootstrap-table-en-US.js
+    │       ├── bootstrap-table-en-US.js.template
     │       ├── bootstrap-table-es-AR.js
+    │       ├── bootstrap-table-es-CL.js
     │       ├── bootstrap-table-es-CR.js
     │       ├── bootstrap-table-es-ES.js
     │       ├── bootstrap-table-es-MX.js
@@ -84,6 +94,7 @@ vendor
     │       ├── bootstrap-table-he-IL.js
     │       ├── bootstrap-table-hr-HR.js
     │       ├── bootstrap-table-hu-HU.js
+    │       ├── bootstrap-table-id-ID.js
     │       ├── bootstrap-table-it-IT.js
     │       ├── bootstrap-table-ja-JP.js
     │       ├── bootstrap-table-ka-GE.js
@@ -102,16 +113,22 @@ vendor
     │       ├── bootstrap-table-tr-TR.js
     │       ├── bootstrap-table-uk-UA.js
     │       ├── bootstrap-table-ur-PK.js
+    │       ├── bootstrap-table-uz-Latn-UZ.js
     │       ├── bootstrap-table-vi-VN.js
     │       ├── bootstrap-table-zh-CN.js
     │       └── bootstrap-table-zh-TW.js
     └── stylesheets
         ├── bootstrap-table.css
         └── extensions
-            ├── bootstrap-table-group-by\ 2.css
+            ├── bootstrap-table-auto-refresh.css
+            ├── bootstrap-table-click-edit-row.css
+            ├── bootstrap-table-filter-control.css
+            ├── bootstrap-table-group-by-v2.css
             ├── bootstrap-table-group-by.css
+            ├── bootstrap-table-multiple-selection-row.css
             ├── bootstrap-table-reorder-rows.css
-            └── bootstrap-table-sticky-header.css
+            ├── bootstrap-table-sticky-header.css
+            └── bootstrap-table-tree-column.css
 ```
 
 
