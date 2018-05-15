@@ -46,6 +46,7 @@ vendor/
     │   │   ├── bootstrap-table-click-edit-row.js
     │   │   ├── bootstrap-table-cookie.js
     │   │   ├── bootstrap-table-copy-rows.js
+    │   │   ├── bootstrap-table-defer-url.js
     │   │   ├── bootstrap-table-editable.js
     │   │   ├── bootstrap-table-export.js
     │   │   ├── bootstrap-table-filter-control.js
@@ -54,6 +55,7 @@ vendor/
     │   │   ├── bootstrap-table-group-by-v2.js
     │   │   ├── bootstrap-table-group-by.js
     │   │   ├── bootstrap-table-i18n-enhance.js
+    │   │   ├── bootstrap-table-jumpto.js
     │   │   ├── bootstrap-table-key-events.js
     │   │   ├── bootstrap-table-mobile.js
     │   │   ├── bootstrap-table-multi-toggle.js
@@ -68,9 +70,9 @@ vendor/
     │   │   ├── bootstrap-table-select2-filter.js
     │   │   ├── bootstrap-table-sticky-header.js
     │   │   ├── bootstrap-table-toolbar.js
-    │   │   └── bootstrap-table-tree-column.js
+    │   │   ├── bootstrap-table-tree-column.js
+    │   │   └── bootstrap-table-treegrid.js
     │   └── locale
-    │       ├── README.md
     │       ├── bootstrap-table-af-ZA.js
     │       ├── bootstrap-table-ar-SA.js
     │       ├── bootstrap-table-ca-ES.js
@@ -79,7 +81,6 @@ vendor/
     │       ├── bootstrap-table-de-DE.js
     │       ├── bootstrap-table-el-GR.js
     │       ├── bootstrap-table-en-US.js
-    │       ├── bootstrap-table-en-US.js.template
     │       ├── bootstrap-table-es-AR.js
     │       ├── bootstrap-table-es-CL.js
     │       ├── bootstrap-table-es-CR.js
@@ -88,6 +89,7 @@ vendor/
     │       ├── bootstrap-table-es-NI.js
     │       ├── bootstrap-table-es-SP.js
     │       ├── bootstrap-table-et-EE.js
+    │       ├── bootstrap-table-eu-EU.js
     │       ├── bootstrap-table-fa-IR.js
     │       ├── bootstrap-table-fr-BE.js
     │       ├── bootstrap-table-fr-FR.js
@@ -125,6 +127,7 @@ vendor/
             ├── bootstrap-table-filter-control.css
             ├── bootstrap-table-group-by-v2.css
             ├── bootstrap-table-group-by.css
+            ├── bootstrap-table-jumpto.css
             ├── bootstrap-table-multiple-selection-row.css
             ├── bootstrap-table-reorder-rows.css
             ├── bootstrap-table-sticky-header.css
