@@ -42,14 +42,11 @@ vendor/
             ├── extensions
             │   ├── accent-neutralise
             │   │   └── bootstrap-table-accent-neutralise.js
-            │   ├── angular
-            │   │   └── bootstrap-table-angular.js
+            │   ├── addrbar
+            │   │   └── bootstrap-table-addrbar.js
             │   ├── auto-refresh
             │   │   ├── bootstrap-table-auto-refresh.css
             │   │   └── bootstrap-table-auto-refresh.js
-            │   ├── click-edit-row
-            │   │   ├── bootstrap-table-click-edit-row.css
-            │   │   └── bootstrap-table-click-edit-row.js
             │   ├── cookie
             │   │   └── bootstrap-table-cookie.js
             │   ├── copy-rows
@@ -60,13 +57,9 @@ vendor/
             │   │   └── bootstrap-table-editable.js
             │   ├── export
             │   │   └── bootstrap-table-export.js
-            │   ├── filter
-            │   │   └── bootstrap-table-filter.js
             │   ├── filter-control
             │   │   ├── bootstrap-table-filter-control.css
             │   │   └── bootstrap-table-filter-control.js
-            │   ├── flat-json
-            │   │   └── bootstrap-table-flat-json.js
             │   ├── group-by
             │   │   ├── bootstrap-table-group-by.css
             │   │   └── bootstrap-table-group-by.js
@@ -90,9 +83,11 @@ vendor/
             │   │   └── bootstrap-table-multiple-sort.js
             │   ├── natural-sorting
             │   │   └── bootstrap-table-natural-sorting.js
-            │   ├── page-jumpto
-            │   │   ├── bootstrap-table-jumpto.css
-            │   │   └── bootstrap-table-jumpto.js
+            │   ├── page-jump-to
+            │   │   ├── bootstrap-table-page-jump-to.css
+            │   │   └── bootstrap-table-page-jump-to.js
+            │   ├── pipeline
+            │   │   └── bootstrap-table-pipeline.js
             │   ├── print
             │   │   └── bootstrap-table-print.js
             │   ├── reorder-columns
@@ -133,6 +128,7 @@ vendor/
                 ├── bootstrap-table-et-EE.js
                 ├── bootstrap-table-eu-EU.js
                 ├── bootstrap-table-fa-IR.js
+                ├── bootstrap-table-fi-FI.js
                 ├── bootstrap-table-fr-BE.js
                 ├── bootstrap-table-fr-FR.js
                 ├── bootstrap-table-he-IL.js
@@ -161,6 +157,8 @@ vendor/
                 ├── bootstrap-table-vi-VN.js
                 ├── bootstrap-table-zh-CN.js
                 └── bootstrap-table-zh-TW.js
+
+35 directories, 89 files
 ```
 
 

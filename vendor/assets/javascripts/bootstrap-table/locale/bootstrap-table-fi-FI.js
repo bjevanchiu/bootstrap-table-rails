@@ -8,49 +8,55 @@
       exports: {}
     };
     factory();
-    global.bootstrapTablePtPT = mod.exports;
+    global.bootstrapTableFiFI = mod.exports;
   }
 })(this, function () {
   'use strict';
 
   /**
-   * Bootstrap Table Portuguese Portugal Translation
-   * Author: Burnspirit<burnspirit@gmail.com>
+   * Bootstrap Table Finnish translations
+   * Author: Minna Lehtomäki <minna.j.lehtomaki@gmail.com>
    */
   (function ($) {
-    $.fn.bootstrapTable.locales['pt-PT'] = {
+    $.fn.bootstrapTable.locales['fi-FI'] = {
       formatLoadingMessage: function formatLoadingMessage() {
-        return 'A carregar, por favor aguarde...';
+        return 'Ladataan, ole hyvä ja odota...';
       },
       formatRecordsPerPage: function formatRecordsPerPage(pageNumber) {
-        return pageNumber + ' registos por p&aacute;gina';
+        return pageNumber + ' rivi\xE4 sivulla';
       },
       formatShowingRows: function formatShowingRows(pageFrom, pageTo, totalRows) {
-        return 'A mostrar ' + pageFrom + ' at&eacute; ' + pageTo + ' de ' + totalRows + ' linhas';
+        return 'N\xE4ytet\xE4\xE4n rivit ' + pageFrom + ' - ' + pageTo + ' / ' + totalRows;
       },
       formatSearch: function formatSearch() {
-        return 'Pesquisa';
+        return 'Hae';
       },
       formatNoMatches: function formatNoMatches() {
-        return 'Nenhum registo encontrado';
+        return 'Hakuehtoja vastaavia tuloksia ei löytynyt';
       },
       formatPaginationSwitch: function formatPaginationSwitch() {
-        return 'Esconder/Mostrar pagina&ccedil&atilde;o';
+        return 'Näytä/Piilota sivutus';
       },
       formatRefresh: function formatRefresh() {
-        return 'Atualizar';
+        return 'Päivitä';
       },
       formatToggle: function formatToggle() {
-        return 'Alternar';
+        return 'Valitse';
       },
       formatColumns: function formatColumns() {
-        return 'Colunas';
+        return 'Sarakkeet';
       },
       formatAllRows: function formatAllRows() {
-        return 'Tudo';
+        return 'Kaikki';
+      },
+      formatExport: function formatExport() {
+        return 'Vie tiedot';
+      },
+      formatClearFilters: function formatClearFilters() {
+        return 'Poista suodattimet';
       }
     };
 
-    $.extend($.fn.bootstrapTable.defaults, $.fn.bootstrapTable.locales['pt-PT']);
+    $.extend($.fn.bootstrapTable.defaults, $.fn.bootstrapTable.locales['fi-FI']);
   })(jQuery);
 });
