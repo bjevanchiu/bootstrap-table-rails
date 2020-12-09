@@ -37,20 +37,21 @@ vendor/
     └── javascripts
         └── bootstrap-table
             ├── bootstrap-table-locale-all.js
+            ├── bootstrap-table-vue.esm.js
+            ├── bootstrap-table-vue.js
             ├── bootstrap-table.css
             ├── bootstrap-table.js
             ├── extensions
-            │   ├── accent-neutralise
-            │   │   └── bootstrap-table-accent-neutralise.js
             │   ├── addrbar
             │   │   └── bootstrap-table-addrbar.js
             │   ├── auto-refresh
-            │   │   ├── bootstrap-table-auto-refresh.css
             │   │   └── bootstrap-table-auto-refresh.js
             │   ├── cookie
             │   │   └── bootstrap-table-cookie.js
             │   ├── copy-rows
             │   │   └── bootstrap-table-copy-rows.js
+            │   ├── custom-view
+            │   │   └── bootstrap-table-custom-view.js
             │   ├── defer-url
             │   │   └── bootstrap-table-defer-url.js
             │   ├── editable
@@ -59,10 +60,11 @@ vendor/
             │   │   └── bootstrap-table-export.js
             │   ├── filter-control
             │   │   ├── bootstrap-table-filter-control.css
-            │   │   └── bootstrap-table-filter-control.js
-            │   ├── group-by
-            │   │   ├── bootstrap-table-group-by.css
-            │   │   └── bootstrap-table-group-by.js
+            │   │   ├── bootstrap-table-filter-control.js
+            │   │   └── utils.js
+            │   ├── fixed-columns
+            │   │   ├── bootstrap-table-fixed-columns.css
+            │   │   └── bootstrap-table-fixed-columns.js
             │   ├── group-by-v2
             │   │   ├── bootstrap-table-group-by.css
             │   │   └── bootstrap-table-group-by.js
@@ -72,17 +74,8 @@ vendor/
             │   │   └── bootstrap-table-key-events.js
             │   ├── mobile
             │   │   └── bootstrap-table-mobile.js
-            │   ├── multi-column-toggle
-            │   │   └── bootstrap-table-multi-toggle.js
-            │   ├── multiple-search
-            │   │   └── bootstrap-table-multiple-search.js
-            │   ├── multiple-selection-row
-            │   │   ├── bootstrap-table-multiple-selection-row.css
-            │   │   └── bootstrap-table-multiple-selection-row.js
             │   ├── multiple-sort
             │   │   └── bootstrap-table-multiple-sort.js
-            │   ├── natural-sorting
-            │   │   └── bootstrap-table-natural-sorting.js
             │   ├── page-jump-to
             │   │   ├── bootstrap-table-page-jump-to.css
             │   │   └── bootstrap-table-page-jump-to.js
@@ -97,68 +90,90 @@ vendor/
             │   │   └── bootstrap-table-reorder-rows.js
             │   ├── resizable
             │   │   └── bootstrap-table-resizable.js
-            │   ├── select2-filter
-            │   │   └── bootstrap-table-select2-filter.js
             │   ├── sticky-header
             │   │   ├── bootstrap-table-sticky-header.css
             │   │   └── bootstrap-table-sticky-header.js
             │   ├── toolbar
             │   │   └── bootstrap-table-toolbar.js
-            │   ├── tree-column
-            │   │   ├── bootstrap-table-tree-column.css
-            │   │   └── bootstrap-table-tree-column.js
             │   └── treegrid
             │       └── bootstrap-table-treegrid.js
-            └── locale
-                ├── bootstrap-table-af-ZA.js
-                ├── bootstrap-table-ar-SA.js
-                ├── bootstrap-table-ca-ES.js
-                ├── bootstrap-table-cs-CZ.js
-                ├── bootstrap-table-da-DK.js
-                ├── bootstrap-table-de-DE.js
-                ├── bootstrap-table-el-GR.js
-                ├── bootstrap-table-en-US.js
-                ├── bootstrap-table-es-AR.js
-                ├── bootstrap-table-es-CL.js
-                ├── bootstrap-table-es-CR.js
-                ├── bootstrap-table-es-ES.js
-                ├── bootstrap-table-es-MX.js
-                ├── bootstrap-table-es-NI.js
-                ├── bootstrap-table-es-SP.js
-                ├── bootstrap-table-et-EE.js
-                ├── bootstrap-table-eu-EU.js
-                ├── bootstrap-table-fa-IR.js
-                ├── bootstrap-table-fi-FI.js
-                ├── bootstrap-table-fr-BE.js
-                ├── bootstrap-table-fr-FR.js
-                ├── bootstrap-table-he-IL.js
-                ├── bootstrap-table-hr-HR.js
-                ├── bootstrap-table-hu-HU.js
-                ├── bootstrap-table-id-ID.js
-                ├── bootstrap-table-it-IT.js
-                ├── bootstrap-table-ja-JP.js
-                ├── bootstrap-table-ka-GE.js
-                ├── bootstrap-table-ko-KR.js
-                ├── bootstrap-table-ms-MY.js
-                ├── bootstrap-table-nb-NO.js
-                ├── bootstrap-table-nl-NL.js
-                ├── bootstrap-table-pl-PL.js
-                ├── bootstrap-table-pt-BR.js
-                ├── bootstrap-table-pt-PT.js
-                ├── bootstrap-table-ro-RO.js
-                ├── bootstrap-table-ru-RU.js
-                ├── bootstrap-table-sk-SK.js
-                ├── bootstrap-table-sv-SE.js
-                ├── bootstrap-table-th-TH.js
-                ├── bootstrap-table-tr-TR.js
-                ├── bootstrap-table-uk-UA.js
-                ├── bootstrap-table-ur-PK.js
-                ├── bootstrap-table-uz-Latn-UZ.js
-                ├── bootstrap-table-vi-VN.js
-                ├── bootstrap-table-zh-CN.js
-                └── bootstrap-table-zh-TW.js
+            ├── locale
+            │   ├── bootstrap-table-af-ZA.js
+            │   ├── bootstrap-table-ar-SA.js
+            │   ├── bootstrap-table-bg-BG.js
+            │   ├── bootstrap-table-ca-ES.js
+            │   ├── bootstrap-table-cs-CZ.js
+            │   ├── bootstrap-table-da-DK.js
+            │   ├── bootstrap-table-de-DE.js
+            │   ├── bootstrap-table-el-GR.js
+            │   ├── bootstrap-table-en-US.js
+            │   ├── bootstrap-table-es-AR.js
+            │   ├── bootstrap-table-es-CL.js
+            │   ├── bootstrap-table-es-CR.js
+            │   ├── bootstrap-table-es-ES.js
+            │   ├── bootstrap-table-es-MX.js
+            │   ├── bootstrap-table-es-NI.js
+            │   ├── bootstrap-table-es-SP.js
+            │   ├── bootstrap-table-et-EE.js
+            │   ├── bootstrap-table-eu-EU.js
+            │   ├── bootstrap-table-fa-IR.js
+            │   ├── bootstrap-table-fi-FI.js
+            │   ├── bootstrap-table-fr-BE.js
+            │   ├── bootstrap-table-fr-CH.js
+            │   ├── bootstrap-table-fr-FR.js
+            │   ├── bootstrap-table-fr-LU.js
+            │   ├── bootstrap-table-he-IL.js
+            │   ├── bootstrap-table-hr-HR.js
+            │   ├── bootstrap-table-hu-HU.js
+            │   ├── bootstrap-table-id-ID.js
+            │   ├── bootstrap-table-it-IT.js
+            │   ├── bootstrap-table-ja-JP.js
+            │   ├── bootstrap-table-ka-GE.js
+            │   ├── bootstrap-table-ko-KR.js
+            │   ├── bootstrap-table-ms-MY.js
+            │   ├── bootstrap-table-nb-NO.js
+            │   ├── bootstrap-table-nl-BE.js
+            │   ├── bootstrap-table-nl-NL.js
+            │   ├── bootstrap-table-pl-PL.js
+            │   ├── bootstrap-table-pt-BR.js
+            │   ├── bootstrap-table-pt-PT.js
+            │   ├── bootstrap-table-ro-RO.js
+            │   ├── bootstrap-table-ru-RU.js
+            │   ├── bootstrap-table-sk-SK.js
+            │   ├── bootstrap-table-sr-Cyrl-RS.js
+            │   ├── bootstrap-table-sr-Latn-RS.js
+            │   ├── bootstrap-table-sv-SE.js
+            │   ├── bootstrap-table-th-TH.js
+            │   ├── bootstrap-table-tr-TR.js
+            │   ├── bootstrap-table-uk-UA.js
+            │   ├── bootstrap-table-ur-PK.js
+            │   ├── bootstrap-table-uz-Latn-UZ.js
+            │   ├── bootstrap-table-vi-VN.js
+            │   ├── bootstrap-table-zh-CN.js
+            │   └── bootstrap-table-zh-TW.js
+            └── themes
+                ├── bootstrap-table
+                │   ├── bootstrap-table.css
+                │   ├── bootstrap-table.js
+                │   └── fonts
+                │       ├── bootstrap-table.eot
+                │       ├── bootstrap-table.svg
+                │       ├── bootstrap-table.ttf
+                │       └── bootstrap-table.woff
+                ├── bulma
+                │   ├── bootstrap-table-bulma.css
+                │   └── bootstrap-table-bulma.js
+                ├── foundation
+                │   ├── bootstrap-table-foundation.css
+                │   └── bootstrap-table-foundation.js
+                ├── materialize
+                │   ├── bootstrap-table-materialize.css
+                │   └── bootstrap-table-materialize.js
+                └── semantic
+                    ├── bootstrap-table-semantic.css
+                    └── bootstrap-table-semantic.js
 
-35 directories, 89 files
+36 directories, 103 files
 ```
 
 
