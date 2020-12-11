@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    bootstrap-table-rails (1.8.1)
+    bootstrap-table-rails (1.18.1)
 
 GEM
   remote: https://ruby.taobao.org/
