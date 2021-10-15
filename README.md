@@ -32,22 +32,21 @@ In your `application.css`, include the following:
 Dir tree:
 
 ``` tree
-vendor
+vendor/
 └── assets
     └── javascripts
         └── bootstrap-table
-            ├── bootstrap-table.css
-            ├── bootstrap-table.js
             ├── bootstrap-table-locale-all.js
             ├── bootstrap-table-vue.esm.js
             ├── bootstrap-table-vue.js
+            ├── bootstrap-table.css
+            ├── bootstrap-table.js
             ├── extensions
             │   ├── accent-neutralise
             │   │   └── bootstrap-table-accent-neutralise.js
             │   ├── addrbar
             │   │   └── bootstrap-table-addrbar.js
             │   ├── auto-refresh
-            │   │   ├── bootstrap-table-auto-refresh.css
             │   │   └── bootstrap-table-auto-refresh.js
             │   ├── cell-input
             │   │   ├── bootstrap-table-cell-input.css
@@ -68,9 +67,6 @@ vendor
             │   ├── fixed-columns
             │   │   ├── bootstrap-table-fixed-columns.css
             │   │   └── bootstrap-table-fixed-columns.js
-            │   ├── group-by
-            │   │   ├── bootstrap-table-group-by.css
-            │   │   └── bootstrap-table-group-by.js
             │   ├── group-by-v2
             │   │   ├── bootstrap-table-group-by.css
             │   │   └── bootstrap-table-group-by.js
@@ -80,13 +76,6 @@ vendor
             │   │   └── bootstrap-table-key-events.js
             │   ├── mobile
             │   │   └── bootstrap-table-mobile.js
-            │   ├── multi-column-toggle
-            │   │   └── bootstrap-table-multi-toggle.js
-            │   ├── multiple-search
-            │   │   └── bootstrap-table-multiple-search.js
-            │   ├── multiple-selection-row
-            │   │   ├── bootstrap-table-multiple-selection-row.css
-            │   │   └── bootstrap-table-multiple-selection-row.js
             │   ├── multiple-sort
             │   │   └── bootstrap-table-multiple-sort.js
             │   ├── natural-sorting
@@ -105,16 +94,11 @@ vendor
             │   │   └── bootstrap-table-reorder-rows.js
             │   ├── resizable
             │   │   └── bootstrap-table-resizable.js
-            │   ├── select2-filter
-            │   │   └── bootstrap-table-select2-filter.js
             │   ├── sticky-header
             │   │   ├── bootstrap-table-sticky-header.css
             │   │   └── bootstrap-table-sticky-header.js
             │   ├── toolbar
             │   │   └── bootstrap-table-toolbar.js
-            │   ├── tree-column
-            │   │   ├── bootstrap-table-tree-column.css
-            │   │   └── bootstrap-table-tree-column.js
             │   └── treegrid
             │       └── bootstrap-table-treegrid.js
             ├── locale
@@ -159,6 +143,8 @@ vendor
             │   ├── bootstrap-table-ro-RO.js
             │   ├── bootstrap-table-ru-RU.js
             │   ├── bootstrap-table-sk-SK.js
+            │   ├── bootstrap-table-sr-Cyrl-RS.js
+            │   ├── bootstrap-table-sr-Latn-RS.js
             │   ├── bootstrap-table-sv-SE.js
             │   ├── bootstrap-table-th-TH.js
             │   ├── bootstrap-table-tr-TR.js
@@ -181,8 +167,8 @@ vendor
                 └── semantic
                     ├── bootstrap-table-semantic.css
                     └── bootstrap-table-semantic.js
-
-42 directories, 106 files
+                    
+36 directories, 98 files
 ```
 
 
