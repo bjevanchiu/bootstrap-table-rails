@@ -32,7 +32,7 @@ In your `application.css`, include the following:
 Dir tree:
 
 ``` tree
-vendor/
+vendor
 └── assets
     └── javascripts
         └── bootstrap-table
