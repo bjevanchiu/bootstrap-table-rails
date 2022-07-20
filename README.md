@@ -123,6 +123,7 @@ vendor
             │   ├── bootstrap-table-fr-FR.js
             │   ├── bootstrap-table-fr-LU.js
             │   ├── bootstrap-table-he-IL.js
+            │   ├── bootstrap-table-hi-IN.js
             │   ├── bootstrap-table-hr-HR.js
             │   ├── bootstrap-table-hu-HU.js
             │   ├── bootstrap-table-id-ID.js
@@ -130,6 +131,7 @@ vendor
             │   ├── bootstrap-table-ja-JP.js
             │   ├── bootstrap-table-ka-GE.js
             │   ├── bootstrap-table-ko-KR.js
+            │   ├── bootstrap-table-lb-LU.js
             │   ├── bootstrap-table-ms-MY.js
             │   ├── bootstrap-table-nb-NO.js
             │   ├── bootstrap-table-nl-BE.js
@@ -173,7 +175,7 @@ vendor
                     ├── bootstrap-table-semantic.css
                     └── bootstrap-table-semantic.js
 
-36 directories, 103 files
+36 directories, 105 files
 ```
 
 
